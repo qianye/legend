@@ -1,0 +1,36 @@
+﻿http://blog.csdn.net/spring21st/article/category/681839
+
+http://directguo.com/
+http://www.ruanyifeng.com/
+文件引用顺序
+
+JSBase.js
+JSNode.js
+JSEvent.js
+JSNet.js
+JSGame_Base.js
+JSGame_Canvas.js
+JSGame_ResManager.js
+JSGame_Scene.js
+JSGame_Unit.js
+JSGame_Actor.js
+JSGame_Player.js
+JSGame_Monster.js
+JSGame.js
+
+offsetX/offsetY：相对于当前元素的位移
+x/y：相对于当前座标系的位移，但是IE常常搞错当前座标系
+layerX/layerY：相对于当前座标系的位移
+pageX/pageY：相对于网页的位移
+clientX/clientY：相对于可视窗口的位移
+screenX/screenY：相对于屏幕的位移
+
+offsetX/offsetY：W3C- IE+ Firefox- Opera+ Safari+
+x/y：W3C- IE+ Firefox- Opera+ Safari+
+layerX/layerY：W3C- IE- Firefox+ Opera- Safari+
+pageX/pageY：W3C- IE- Firefox+ Opera+ Safari+
+clientX/clientY：W3C+ IE+ Firefox+ Opera+ Safari+
+screenX/screenY：W3C+ IE+ Firefox+ Opera+ Safari+
+
+六对属性只有clientX/clientY和screenX/screenY是W3C规范内的。
+而offsetX/offsetY和pageX/pageY知其一组即可通过计算取得另一组，对于JS开发者而言，Firefox/Opera/Safari提供的pageX/pageY更加实用。x/y和layerX/layerY本应该是作用相同、名称不同的两组属性，即相对于offsetParent对象的位移，但是IE对offsetParent的判断却相当不准确，大部份情况下offsetParent对象都等于body对象，最严重的后果就是在一个绝对定位的层中offsetParent对象本应该为层对象，可IE却依旧为body对象，导致座标系混乱，而Opera和Safari中的x/y则同样继承了IE中的错误，因此x/y属性能不用则不用
